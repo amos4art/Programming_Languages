@@ -1,3 +1,9 @@
+(*
+ Alexander Moskalev, 2017
+Coursera, Programming Languages, Part A 
+*)
+
+
 fun same_string(s1 : string, s2 : string) =
     s1 = s2
 
@@ -44,8 +50,7 @@ fun similar_names( str_sub, full_name)=
 				   full_name::aux( get_substitutions2( str_sub, first ), [], middle, last)
 			       end
 
-(* you may assume that Num is always used with values 2, 3, ..., 10
-   though it will not really come up *)
+				   
 datatype suit = Clubs | Diamonds | Hearts | Spades
 datatype rank = Jack | Queen | King | Ace | Num of int 
 type card = suit * rank
@@ -99,4 +104,38 @@ fun sum_cards( cs )=
       aux( cs, 0 )
   end
       
+
+fun score( cs , goal )=
+  case (cs,goal) of
+      ([],g) => g div 2
+    | (xs',g) => let
+	val sum = sum_cards(xs')
+    in
+	if sum > g
+	then
+	    if all_same_color(xs')
+	    then 3 * (sum - g) div 2
+	    else 3 * (sum - g)
+	else
+	    if all_same_color(xs')
+	    then (g - sum) div 2
+	    else (g - sum)
+    end
+		     
 		
+fun officiate( card_list, move_list, goal )=			    
+  let
+      fun aux( cards, moves, helds)=
+	case moves of
+	  [] => score( helds, goal )
+	 | m::ms' => case m of
+			Discard(c) => aux( cards, ms', remove_card( helds, c, IllegalMove ) )
+		      | Draw => case cards of
+				    [] => score( helds, goal )
+				  | c::cs' => if sum_cards( c::helds ) > goal then score( c::helds, goal )
+					      else aux( cs', ms', c::helds )
+  in
+      aux( card_list, move_list, [] )
+  end
+      
+		      

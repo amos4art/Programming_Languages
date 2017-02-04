@@ -1,3 +1,9 @@
+(*
+ Alexander Moskalev, 2017
+Coursera, Programming Languages, Part A 
+*)
+
+
 fun is_older (date1 : (int * int * int), date2 : (int * int * int)) =
   if #1 date1 = #1 date2
   then
