@@ -1,6 +1,6 @@
-(*
- Alexander Moskalev, 2017
-Coursera, Programming Languages, Part A 
+(* 
+Coursera, Programming Languages, Part A, Homework 2
+Alexander Moskalev, 2017 
 *)
 
 

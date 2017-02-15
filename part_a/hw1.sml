@@ -1,6 +1,6 @@
-(*
- Alexander Moskalev, 2017
-Coursera, Programming Languages, Part A 
+(* 
+Coursera, Programming Languages, Part A, Homework 1
+Alexander Moskalev, 2017 
 *)
 
 
@@ -18,8 +18,8 @@ fun is_older (date1 : (int * int * int), date2 : (int * int * int)) =
 	   else false
   else
       if #1 date1 < #1 date2
-  then true
-  else false
+      then true
+      else false
 
 	   
 fun number_in_month (dates : (int * int * int) list, month : int) =
