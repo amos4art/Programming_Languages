@@ -18,12 +18,12 @@ fun longest_string2 str_list =
   
 fun longest_string_helper f = fn str_list => List.foldl ( fn (x,acc) => if f(String.size(x),String.size(acc)) then x else acc ) "" str_list
 
-val longest_string3 = longest_string_helper (fn (x,y) => if x > y then true else false )
+val longest_string3 = longest_string_helper (fn (x,y) => x > y )
 
-val longest_string4 = longest_string_helper (fn (x,y) => if x >= y then true else false )
+val longest_string4 = longest_string_helper (fn (x,y) => x >= y )
 						  
   
-val longest_capitalized = longest_string_helper (fn (x,y) => if x > y then true else false ) o (only_capitals)
+val longest_capitalized = longest_string_helper (fn (x,y) => x > y ) o (only_capitals)
 
 
 val rev_string = fn str => (implode o List.rev o explode) str
@@ -45,8 +45,7 @@ val all_answers = fn f => fn a => let  val result_list = (List.concat o (List.ma
 				  in
 				      if null result_list andalso (not o null) a
 				      then NONE
-				      else
-					  SOME result_list
+				      else SOME result_list
 				  end
 
 
