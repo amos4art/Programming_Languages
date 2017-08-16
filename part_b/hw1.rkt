@@ -36,13 +36,11 @@
      (lambda () (f 1)))
 )
 
-( define (stream-add-zero s)
 
-
-   
-)
-
-
+(define (stream-add-zero s)
+  (letrec ([f (lambda (fstream)
+                    (cons (cons 0 (car (fstream))) (stream-add-zero (cdr (fstream)))))])
+        ( lambda () (f s))))
 
 
 (define ones (lambda () (cons 1 ones)))
